@@ -1,7 +1,7 @@
 # Jekyll Bootstrap Tabs Plugin
 
 A Jekyll plugin that converts specific Markdown syntax into Bootstrap tab components, enhancing your static site's interactivity without diving into frontend complexities.
-
+> From my traversal of the GitHub repositories, this is by far the most convenient way to write markdown, without excessive liqid tags/filters, and without loading _layouts/html templates, just load up the bootstrap tabs class
 ## Features
 
 - Converts Markdown syntax into Bootstrap tab structures.
