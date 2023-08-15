@@ -33,3 +33,13 @@ Content for tab 1.
 Content for tab 2.
 
 ====tabend====
+```
+**The above structure will be converted to corresponding Bootstrap tab components.**
+
+## Contribution
+Feedback, issues, and pull requests are welcome.
+
+## License
+This plugin is open-source. Feel free to use, modify, and distribute as per your needs.
+
+## Made with ❤️ for the Jekyll community.
