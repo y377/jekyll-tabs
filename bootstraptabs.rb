@@ -61,26 +61,28 @@ module Jekyll
       tab_contents = []
 
       tabs.each_with_index do |title, index|
+        tab_id = "tab-#{index}"
         active_class = index.zero? ? ' active' : ''
         fade_class = index.zero? ? ' show active' : ' fade'
-        
+
         nav_tabs << %(
           <li class="nav-item" role="presentation">
-              <button class="nav-link#{active_class}" id="#{title}-tab" data-bs-toggle="tab" data-bs-target="##{title}-tab-pane" type="button" role="tab" aria-controls="#{title}-tab-pane" aria-selected="#{index.zero?}">#{title}</button>
+            <button class="nav-link#{active_class}" id="#{tab_id}-tab" data-bs-toggle="tab" data-bs-target="##{tab_id}-pane" type="button" role="tab" aria-controls="#{tab_id}-pane" aria-selected="#{index.zero?}">#{title}</button>
           </li>
         )
-        
+
         tab_contents << %(
-          <div class="tab-pane fade#{fade_class}" id="#{title}-tab-pane" role="tabpanel" aria-labelledby="#{title}-tab">#{contents[index]}</div>
+          <div class="tab-pane fade#{fade_class}" id="#{tab_id}-pane" role="tabpanel" aria-labelledby="#{tab_id}-tab">#{contents[index]}</div>
         )
       end
 
+      tab_group_id = "tab-group"
       %(
-        <div class="row border-bottom border-danger">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <div class="row m-3">
+          <ul class="nav nav-tabs mb-3" id="#{tab_group_id}" role="tablist">
             #{nav_tabs.join}
           </ul>
-          <div class="tab-content" id="myTabContent">
+          <div class="tab-content" id="#{tab_group_id}-content">
             #{tab_contents.join}
           </div>
         </div>
