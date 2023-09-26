@@ -21,7 +21,7 @@ module Jekyll
       final_content = []
 
       content.split("\n").each do |line|
-        if match = line.match(/====(.*?)====/)
+        if match = line.match(/====\[(.*?)\]====/)
           tab_title = match[1].strip
 
           if tab_title == 'tabend'
