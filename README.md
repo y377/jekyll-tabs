@@ -24,15 +24,15 @@ A Jekyll plugin that converts specific Markdown syntax into Bootstrap tab compon
 Write your Markdown with the following structure to generate Bootstrap tabs:
 
 ```markdown
-====Tab Title 1====
+====[Tab-Title-1]====
 
 Content for tab 1.
 
-====Tab Title 2====
+====[Tab-Title-2]====
 
 Content for tab 2.
 
-====tabend====
+====[tabend]====
 ```
 **The above structure will be converted to corresponding Bootstrap tab components.**
 
