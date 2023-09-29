@@ -1,3 +1,4 @@
+require 'securerandom'
 module Jekyll
   class ReplaceContent < Converter
     safe true
@@ -57,34 +58,34 @@ module Jekyll
     end
 
     def generate_tab_group(tabs, contents)
+      tab_group_id = "tab-group-#{SecureRandom.hex}" # 生成唯一的 tab 组 id
       nav_tabs = []
       tab_contents = []
 
       tabs.each_with_index do |title, index|
-        tab_id = "tab-#{index}"
         active_class = index.zero? ? ' active' : ''
         fade_class = index.zero? ? ' show active' : ' fade'
 
+        # 替换标题中的空格为连字符
+        title_id = title.downcase.gsub(' ', '-')
+
         nav_tabs << %(
-          <li class="nav-item" role="presentation">
-            <button class="nav-link#{active_class}" id="#{tab_id}-tab" data-bs-toggle="tab" data-bs-target="##{tab_id}-pane" type="button" role="tab" aria-controls="#{tab_id}-pane" aria-selected="#{index.zero?}">#{title}</button>
+          <li class="nav-item mx-4 my-2" role="presentation">
+              <button class="nav-link hvr-bubble-bottom text-reset#{active_class}" id="#{title_id}-tab" data-bs-toggle="tab" data-bs-target="##{title_id}-tab-pane" type="button" role="tab" aria-controls="#{title_id}-tab-pane" aria-selected="#{index.zero?}">#{title}</button>
           </li>
         )
 
         tab_contents << %(
-          <div class="tab-pane fade#{fade_class}" id="#{tab_id}-pane" role="tabpanel" aria-labelledby="#{tab_id}-tab">#{contents[index]}</div>
+          <div class="tab-pane fade#{fade_class}" id="#{title_id}-tab-pane" role="tabpanel" aria-labelledby="#{title_id}-tab">#{contents[index]}</div>
         )
       end
 
-      tab_group_id = "tab-group"
       %(
-        <div class="row m-3">
-          <ul class="nav nav-tabs mb-3" id="#{tab_group_id}" role="tablist">
-            #{nav_tabs.join}
-          </ul>
-          <div class="tab-content" id="#{tab_group_id}-content">
-            #{tab_contents.join}
-          </div>
+        <ul class="nav nav-pills nav-fill flex-column flex-sm-row mt-5 mb-4" id="#{tab_group_id}" role="tablist">
+          #{nav_tabs.join}
+        </ul>
+        <div class="tab-content" id="#{tab_group_id}-content">
+          #{tab_contents.join}
         </div>
       )
     end
